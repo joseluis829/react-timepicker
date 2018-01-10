@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-onclickoutside@6.7.0/dist/react-onclickoutside.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./src/react-datetime.css">
+
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <script>
+      //Using MomentJs
+       var a = moment('2016-01-01');
+       //Add a comment to this line
+       var b = a.add(1, 'week');
+       a.format(); //"2016-01-08T00:00:00-06:00"
+       console.log(a.format())
+    </script>
+
+    <div id="root"></div>
+
+  </body>
+</html>
