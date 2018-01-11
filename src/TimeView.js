@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react';
+import onClickOutside from "react-onclickoutside";
 
-export class DateTimePickerTime extends React.Component {
+class DateTimePickerTime1 extends React.Component {
 
     constructor(props) {
         super(props);
@@ -19,10 +20,7 @@ export class DateTimePickerTime extends React.Component {
             this.decrease = this.decrease.bind(this)
             this.pad = this.pad.bind(this)
             this.handleClickOutside = this.handleClickOutside.bind(this)
-            //this. = this..bind(this)
 
-            //this.props = { selectedDate: null, toLowerCase: false, timeFormat: 'h', viewDate: false }
-            console.log(this.props)
             this.state = this.getInitialState()
 
         }
@@ -251,3 +249,7 @@ export class DateTimePickerTime extends React.Component {
             this.props.handleClickOutside();
         }
     }
+
+
+    var DateTimePickerTime = onClickOutside(DateTimePickerTime1);
+    export class DateTimePickerTime;
