@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import {DateTimePickerTime} from './TimeView.js';
+import './react-datetime.css';
 
 var assign = Object.assign,
     PropTypes = React.PropTypes,
@@ -36,8 +37,28 @@ class CalendarContainer extends React.Component {
 
 export class DateTime extends React.Component {
 
-    constructor() {
-        super();
+
+    static defaultProps = {
+      ...Component.defaultProps,
+      className: '',
+			defaultValue: '',
+			inputProps: {},
+			input: true,
+			onFocus: () => {},
+			onBlur: () => {},
+			onChange: () => {},
+			onViewModeChange: () => {},
+			timeFormat: true,
+			timeConstraints: {},
+			dateFormat: true,
+			strictParsing: true,
+			closeOnSelect: false,
+			closeOnTab: true,
+			utc: false
+    }
+
+    constructor(props) {
+        super(props);
 
         this.getInitialState = this.getInitialState.bind(this)
         this.getStateFromProps = this.getStateFromProps.bind(this)
@@ -57,32 +78,13 @@ export class DateTime extends React.Component {
         this.localMoment = this.localMoment.bind(this)
         this.getComponentProps = this.getComponentProps.bind(this)
 
-        let props = this.getDefaultProps()
-        this.props = { ...props, ...this.props }
+        //this.props = { ...this.getDefaultProps(), ...this.props }
+
         this.state = this.getInitialState()
 
     }
 
-	getDefaultProps () {
-		var nof = function() {};
-		return {
-			className: '',
-			defaultValue: '',
-			inputProps: {},
-			input: true,
-			onFocus: nof,
-			onBlur: nof,
-			onChange: nof,
-			onViewModeChange: nof,
-			timeFormat: true,
-			timeConstraints: {},
-			dateFormat: true,
-			strictParsing: true,
-			closeOnSelect: false,
-			closeOnTab: true,
-			utc: false
-		};
-	}
+
 
 	getInitialState () {
 		var state = this.getStateFromProps( this.props );
@@ -472,21 +474,25 @@ export class DateTime extends React.Component {
 		if ( this.state.open )
 			className += ' rdtOpen';
 
-        /*React.createElement('div', { className: className }, children.concat(
-            React.createElement('div',
-                { key: 'dt', className: 'rdtPicker' },
-                React.createElement(CalendarContainer, { view: this.state.currentView, viewProps: this.getComponentProps(), onClickOutside: this.handleClickOutside })
-            )
-        ))*/
+        return React.createElement('div', { className: className },
+        [
+          React.createElement('input', assign({ key: 'i' }, finalInputProps )),
+          React.createElement('div',
+              { key: 'dt', className: 'rdtPicker' },
+              React.createElement(CalendarContainer, { view: this.state.currentView, viewProps: this.getComponentProps(), onClickOutside: this.handleClickOutside })
+          )
+        ]
+
+        );
 
 
-        return (
+        /*return (
         <div className={className}>
           <div key='dt' className='rdtPicker' >
             <CalendarContainer {...{ view: this.state.currentView, viewProps: this.getComponentProps(), onClickOutside: this.handleClickOutside }}>
             </CalendarContainer>
           </div>
-        </div>);
+        </div>);*/
 	}
 };
 
